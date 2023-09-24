@@ -95,14 +95,14 @@ FlaskPizzaAPI offers a range of key features to simplify restaurant and pizza ma
        "address": "20493 Bennett Row Suite 275\nWardmouth, AR 65639",
        "pizzas": [
          {
-           "id": 1,
-           "name": "Cheese",
-           "ingredients": "Dough, Tomato Sauce, Cheese"
+           "id": 8,
+           "ingredients": "Tomato Sauce, Mushrooms,   Mozzarella Cheese",
+            "name": "Mushroom Lovers"
          },
          {
-           "id": 2,
-           "name": "Pepperoni",
-           "ingredients": "Dough, Tomato Sauce, Cheese, Pepperoni"
+           "id": 10,
+           "name": "Pesto Chicken",
+           "ingredients": "Pesto Sauce, Chicken, Cherry Tomatoes, Mozzarella Cheese",
          }
        ]
      }
@@ -143,6 +143,24 @@ FlaskPizzaAPI offers a range of key features to simplify restaurant and pizza ma
      ]
      ```
 
+5. **GET /restaurants**
+   - **Description**: Retrieve a list of all restaurants.
+   - **Response Format**:
+     ```json
+     [
+       {
+        "address": "20493 Bennett Row Suite 275\nWardmouth, AR 65639",
+        "id": 1,
+        "name": "Bryan, Anderson and Cain"
+       },
+       {
+        "address": "9065 Brett Stravenue Apt. 460\nBakerfort, OK 91687",
+        "id": 2,
+        "name": "Evans, Woodward and Singh"
+       }
+     ]
+     ```
+
 5. **POST /restaurant_pizzas**
    - **Description**: Create a new RestaurantPizza associated with an existing Pizza and Restaurant.
    - **Request Body Format**:
@@ -156,6 +174,7 @@ FlaskPizzaAPI offers a range of key features to simplify restaurant and pizza ma
    - **Response Format (if the RestaurantPizza is created successfully)**:
      ```json
      {
+       "message": "Restaurant_pizza created successfully",
        "id": 1,
        "name": "Cheese",
        "ingredients": "Dough, Tomato Sauce, Cheese"
