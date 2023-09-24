@@ -40,20 +40,29 @@ api.add_resource(Restaurants, '/restaurants')
 class RestaurantsByID(Resource):
 
     def get(self, id):
-        restaurant = Restaurant.query.filter_by(id=id).first()
+        restaurant = Restaurant.query.get(id)
         if restaurant:
             restaurant_dict = {
                 "id": restaurant.id,
                 "name": restaurant.name,
                 "address": restaurant.address,
+                "pizzas": [
+                    {
+                        "id": pizza.pizza.id,
+                        "name": pizza.pizza.name,
+                        "ingredients": pizza.pizza.ingredients,
+                    }
+                    for pizza in restaurant.restaurant_pizzas
+                ]
             }
-            response = make_response(restaurant_dict, 200)
+            response = make_response(jsonify(restaurant_dict), 200)
         else:
             response_body = {
                 "error": "Restaurant not found"
             }
-            response = make_response(response_body,404)
+            response = make_response(jsonify(response_body), 404)
         return response
+
     
     def delete(self,id):
         restaurant = Restaurant.query.filter_by(id=id).first()
