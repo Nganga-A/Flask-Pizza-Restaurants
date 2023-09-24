@@ -125,28 +125,46 @@ api.add_resource(PizzaByID, '/pizzas/<int:id>')
 
 class RestaurantPizzas(Resource):
     def post(self):
-        new_restaurant_pizza = Restaurant_pizzas(
-            price = int(request.form.get('price')),
-            pizza_id = request.form.get('pizza_id'),
-            restaurant_id = request.form.get('restaurant_id'),
-        )
         try:
+            price = int(request.form.get('price'))
+            pizza_id = int(request.form.get('pizza_id'))
+            restaurant_id = int(request.form.get('restaurant_id'))
+
+            # Check if the specified pizza and restaurant exist
+            pizza = Pizza.query.get(pizza_id)
+            restaurant = Restaurant.query.get(restaurant_id)
+
+            if not pizza:
+                raise ValueError(f"Pizza with ID {pizza_id} not found")
+
+            if not restaurant:
+                raise ValueError(f"Restaurant with ID {restaurant_id} not found")
+
+            new_restaurant_pizza = Restaurant_pizzas(
+                price=price,
+                pizza_id=pizza_id,
+                restaurant_id=restaurant_id,
+            )
+
             db.session.add(new_restaurant_pizza)
             db.session.commit()
-            restaurant_pizza_dict = new_restaurant_pizza.to_dict()
+
             response_body = {
-                "message": "Restaurant_pizza created for...",
-                "pizza": restaurant_pizza_dict['pizza'],
-                "restaurant": restaurant_pizza_dict['restaurant']
+                "message": "Restaurant_pizza created successfully",
+                "price": new_restaurant_pizza.price,
+                "pizza_id": new_restaurant_pizza.pizza_id,
+                "restaurant_id": new_restaurant_pizza.restaurant_id
             }
-            response = make_response(response_body, 200)
+
+            response = make_response(jsonify(response_body), 200)
         except Exception as e:
             response_body = {
                 "Validation errors": f"An exception of type {type(e).__name__} occurred: {str(e)}"
             }
-            response = make_response(response_body, 404)
+            response = make_response(jsonify(response_body), 404)
         finally:
             return response
+
 
 
 api.add_resource(RestaurantPizzas,'/restaurant_pizzas')
@@ -154,3 +172,13 @@ api.add_resource(RestaurantPizzas,'/restaurant_pizzas')
 
 if __name__ == '__main__':
     myApp.run(port=5555, debug=True)
+
+
+
+
+
+
+
+
+
+
