@@ -183,24 +183,6 @@ The API provides the following routes:
      ]
      ```
 
-5. **GET /restaurants**
-   - **Description**: Retrieve a list of all restaurants.
-   - **Response Format**:
-     ```json
-     [
-       {
-        "address": "20493 Bennett Row Suite 275\nWardmouth, AR 65639",
-        "id": 1,
-        "name": "Bryan, Anderson and Cain"
-       },
-       {
-        "address": "9065 Brett Stravenue Apt. 460\nBakerfort, OK 91687",
-        "id": 2,
-        "name": "Evans, Woodward and Singh"
-       }
-     ]
-     ```
-
 5. **POST /restaurant_pizzas**
    - **Description**: Create a new RestaurantPizza associated with an existing Pizza and Restaurant.
    - **Request Body Format**:
