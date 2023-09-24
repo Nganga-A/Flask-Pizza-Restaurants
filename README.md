@@ -7,7 +7,12 @@ FlaskPizzaAPI is a powerful and flexible Flask-based API for managing pizza rest
 ## Table of Contents
 - [Installation](#installation)
 - [Key Features](#key-features)
+- [Models](#models)
+- [Validations](#validations)
+- [Routes](#routes)
 - [Endpoints](#endpoints)
+- [Contributing](#contributing)
+- [License](#license)
 
 ---
 
@@ -62,6 +67,41 @@ FlaskPizzaAPI offers a range of key features to simplify restaurant and pizza ma
 - **Detailed Information**: Retrieve comprehensive details about a restaurant, including its pizza offerings.
 
 - **Seamless Integration**: Add new restaurant-pizza combinations to expand your pizza network with minimal effort.
+
+
+
+## Models
+
+The project defines the following models:
+
+1. **Restaurant**: Represents a pizza restaurant with attributes `id`, `name`, and `address`.
+
+2. **Pizza**: Represents a type of pizza with attributes `id`, `name`, `ingredients`, `created_at`, and `updated_at`.
+
+3. **RestaurantPizza**: Represents the association between restaurants and pizzas with attributes `id`, `price`, `restaurant_id`, and `pizza_id`.
+
+
+## Validations
+
+The following validations are applied to the models:
+
+- **`RestaurantPizza`**:
+- Price must be between 1 and 30.
+
+- **`Restaurant`**:
+- Name must be less than 50 characters.
+- Name must be unique.
+
+
+## Routes
+
+The API provides the following routes:
+
+- `GET /restaurants`: Get a list of all restaurants.
+- `GET /restaurants/:id`: Get details of a specific restaurant along with its pizzas.
+- `DELETE /restaurants/:id`: Delete a restaurant and associated restaurant-pizza relationships.
+- `GET /pizzas`: Get a list of all pizzas.
+- `POST /restaurant_pizzas`: Create a new restaurant-pizza association.
 
 
 
@@ -188,3 +228,16 @@ FlaskPizzaAPI offers a range of key features to simplify restaurant and pizza ma
      ```
 
 Feel free to explore and use these endpoints to manage your pizza restaurants effortlessly with FlaskPizzaAPI.
+
+## Contributing
+
+Contributions to this project are welcome. To contribute, follow these steps:
+
+1. Fork the repository.
+2. Create a new branch for your feature or bug fix.
+3. Make your changes.
+4. Submit a pull request to the `main` branch of the original repository.
+
+## License
+
+This project is licensed under the MIT License - see the [LICENSE](LICENSE) file for details.
