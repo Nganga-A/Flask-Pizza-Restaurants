@@ -80,6 +80,8 @@ The project defines the following models:
 
 3. **RestaurantPizza**: Represents the association between restaurants and pizzas with attributes `id`, `price`, `restaurant_id`, and `pizza_id`.
 
+<img src="sscreenshots/relationships.png" alt="table relations for models">
+
 
 ## Validations
 
