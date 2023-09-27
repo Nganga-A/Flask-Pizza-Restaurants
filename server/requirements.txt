@@ -2,7 +2,7 @@ alembic==1.12.0
 aniso8601==9.0.1
 blinker==1.6.2
 click==8.1.7
-Faker==19.6.2
+Faker>=19.6.2
 Flask==2.3.3
 Flask-Migrate==4.0.5
 Flask-RESTful==0.3.10
@@ -23,3 +23,5 @@ SQLAlchemy==2.0.21
 SQLAlchemy-serializer==1.4.1
 typing_extensions==4.8.0
 Werkzeug==2.3.7
+gunicorn==19.7.1
+
