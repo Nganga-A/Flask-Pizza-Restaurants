@@ -12,17 +12,27 @@ db.init_app(myApp)
 migrate = Migrate(myApp, db)
 api = Api(myApp)
 
-class Home(Resource):
-    def get(self):
-        response_message = {
-            "Message": "WELCOME TO OUR PIZZERIA.",
-            "Restaurants": '/restaurants',
-            "Pizzas": '/pizzas'
+@myApp.route('/')
+def home():
+    response_dict = {
+        "Message": "Welcome to Pizza Inn",
+        "Restaurants":'/restaurants',
+        "pizzas":'/pizzas'
+    }
 
-        }
-        return make_response(response_message, 200)
+    return make_response(response_dict, 200)
 
-api.add_resource(Home, '/')
+# class Home(Resource):
+#     def get(self):
+#         response_message = {
+#             "Message": "WELCOME TO OUR PIZZERIA.",
+#             "Restaurants": '/restaurants',
+#             "Pizzas": '/pizzas'
+
+#         }
+#         return make_response(response_message, 200)
+
+# api.add_resource(Home, '/')
 
 
 class Restaurants(Resource):
