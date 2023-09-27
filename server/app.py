@@ -15,7 +15,10 @@ api = Api(myApp)
 class Home(Resource):
     def get(self):
         response_message = {
-            "message": "WELCOME TO OUR PIZZERIA."
+            "Message": "WELCOME TO OUR PIZZERIA.",
+            "Restaurants": '/restaurants',
+            "Pizzas": '/pizzas'
+
         }
         return make_response(response_message, 200)
 
